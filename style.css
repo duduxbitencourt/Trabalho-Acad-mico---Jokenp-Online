@@ -1,0 +1,147 @@
+/* =========================================
+   ESTILOS GERAIS
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding não aumente o tamanho total dos elementos */
+    font-family: 'Arial', sans-serif; /* Fonte padrão por enquanto */
+}
+
+.titulo {
+    margin-bottom: 30px; /* Afasta o titulo dos objetos */
+}
+
+body {
+    background-color: #4e8bf372; /* Azul suave inicial */
+    display: flex;             /* Flexbox para centralizar tudo */
+    justify-content: center;   /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+    transform: translateY(-80px); /* translateY move o elemento no eixo Y. Valor negativo = Para Cima */
+    height: 100vh;             /* Ocupa 100% da altura da tela */
+    overflow: hidden;          /* Evita barras de rolagem indesejadas */
+    transition: background-color 0.5s; /* Suaviza a troca de cor (vitória/derrota) */
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px; /* Limita a largura em telas grandes */
+}
+
+/* CLASSE UTILITÁRIA (ESTADOS)
+   Usada pelo JavaScript para alternar as telas ('Seleção' -> 'Suspense' -> 'Resultado')
+*/
+.d-none {
+    display: none !important;
+}
+
+/* =========================================
+   TELA DE SELEÇÃO (BOTÕES)
+   ========================================= */
+.botao-opcao {
+    background: none;  /* Remove o fundo cinza padrão de botões */
+    border: none;      /* Remove a borda padrão */
+    cursor: pointer;   /* Mãozinha ao passar o mouse */
+    transition: transform 0.2s; /* Suaviza o zoom do hover */
+}
+
+.botao-opcao img {
+    width: 120px; 
+    /* Sombra no contorno do desenho, e não um quadrado */
+    filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.2));
+}
+
+/* Zoom ao passar o mouse */
+.botao-opcao:hover {
+    transform: scale(1.1); 
+}
+
+/* =========================================
+   PALCO DA BATALHA
+   ========================================= */
+.palco-batalha {
+    display: flex;
+    justify-content: center;
+    gap: 50px;        /* Espaço entre as mãos */
+    margin-top: 20px;
+}
+
+.palco-batalha img {
+    width: 150px;
+}
+
+/* ESPELHAMENTO 
+   Inverte a mão da direita horizontalmente (eixo X) para parecer
+   que é o oponente de frente para mim.
+*/
+.direita, #img-computador {
+    transform: scaleX(-1); 
+}
+
+#texto-animacao {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   ANIMAÇÃO DO JO... KEN... PÔ!)
+   ========================================= */
+
+/* Define o movimento de "sobe e desce" */
+@keyframes balancar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); } /* Sobe */
+    100% { transform: translateY(0px); }  /* Desce */
+}
+
+/* Aplica a animação na mão esquerda */
+.mao-balancando {
+    animation: balancar 0.5s infinite ease-in-out;
+}
+
+/* ANIMAÇÃO ESPECÍFICA DA DIREITA
+   Preciso de um keyframe separado porque a mão direita já tem um 
+   'transform: scaleX(-1)'. Se eu usasse a animação normal, ela perderia 
+   o espelhamento e ficaria ao contrário.
+*/
+.mao-balancando.direita {
+    animation: balancar-direita 0.5s infinite ease-in-out;
+}
+
+@keyframes balancar-direita {
+    0% { transform: scaleX(-1) translateY(0px); }   /* Mantém espelhado + posição original */
+    50% { transform: scaleX(-1) translateY(-20px); } /* Mantém espelhado + sobe */
+    100% { transform: scaleX(-1) translateY(0px); }  /* Mantém espelhado + desce */
+}
+
+/* =========================================
+   BOTÃO DE REINICIAR ANIMADO
+   ========================================= */
+#btn-reiniciar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px; 
+    padding: 0;
+    transition: transform 0.3s ease; /* Prepara a animação de rotação */
+}
+
+#btn-reiniciar img {
+    width: 80px;
+    height: 80px;
+    /* Mesma sombra cartoon dos outros elementos para consistência */
+    filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.2));
+}
+
+/* Efeito: Gira 180 graus e cresce um pouco */
+#btn-reiniciar:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+
+/* Efeito Tátil: Diminui ao clicar */
+#btn-reiniciar:active {
+    transform: scale(0.9);
+}

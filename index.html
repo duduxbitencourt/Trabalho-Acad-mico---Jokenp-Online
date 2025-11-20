@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpô Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="tela-selecao">
+            <h1 class="titulo">Pedra, papel ou tesoura?</h1>
+            
+            <div class="opcoes-container">
+                <button class="botao-opcao" onclick="jogar('pedra')">
+                    <img src="img/obj-pedra.png" alt="Pedra">
+                </button>
+
+                <button class="botao-opcao" onclick="jogar('papel')">
+                    <img src="img/obj-papel.png" alt="Papel">
+                </button>
+
+                <button class="botao-opcao" onclick="jogar('tesoura')">
+                    <img src="img/obj-tesoura.png" alt="Tesoura">
+                </button>
+            </div>
+        </div>
+
+        <div id="tela-suspense" class="d-none">
+            <div id="texto-animacao">JO</div>
+            
+            <div class="palco-batalha">
+                <img src="img/mao-pedra.png" alt="Mão Esquerda" class="mao-balancando esquerda">
+                <img src="img/mao-pedra.png" alt="Mão Direita" class="mao-balancando direita">
+            </div>
+        </div>
+
+        <div id="tela-resultado" class="d-none">
+            <h1 id="mensagem-final">VOCÊ GANHOU!</h1>
+            
+            <div class="palco-batalha">
+                <div class="jogador-display">
+                    <p>Você</p>
+                    <img id="img-jogador" src="" alt="Sua escolha">
+                </div>
+                
+                <div class="jogador-display">
+                    <p>CPU</p>
+                    <img id="img-computador" src="" alt="Escolha CPU">
+                </div>
+            </div>
+
+            <button id="btn-reiniciar" onclick="reiniciarJogo()" aria-label="Jogar Novamente">
+                <img src="img/obj-jogadnv.png" alt="Ícone de reiniciar">
+            </button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
